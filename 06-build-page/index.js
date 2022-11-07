@@ -59,32 +59,32 @@ const copyAssets = async () => {
     try {
         const cloneAssetsFolder = await mkdir(pathCloneAssets, { recursive: true });
 
-    function deleteFolder(path) {
-        let files = [];
-        if( fs.existsSync(path) ) {
-            files = fs.readdirSync(path);
-            files.forEach(function(file,index){
-                let curPath = path + "/" + file;
-                if(fs.statSync(curPath).isDirectory()) {
-                    deleteFolder(curPath);
-                } else {
-                    fs.unlinkSync(curPath);
-                }
-            });
-            fs.rmdirSync(path);
-        }
-    }
-        deleteFolder(pathCloneAssets);
+    // function deleteFolder(path) {
+    //     let files = [];
+    //     if( fs.existsSync(path) ) {
+    //         files = fs.readdirSync(path);
+    //         files.forEach(function(file,index){
+    //             let curPath = path + "/" + file;
+    //             if(fs.statSync(curPath).isDirectory()) {
+    //                 deleteFolder(curPath);
+    //             } else {
+    //                 fs.unlinkSync(curPath);
+    //             }
+    //         });
+    //         fs.rmdirSync(path);
+    //     }
+    // }
+    //     deleteFolder(pathCloneAssets);
 
-        // async function deleteFolder(){
-        //     try{
-        //       await fs.promises.access(pathCloneAssets)
-        //       await fs.promises.rm(pathCloneAssets,{recursive: true})
-        //     }catch{
+        async function deleteFolder(){
+            try{
+              await fs.promises.access(pathCloneAssets)
+              await fs.promises.rm(pathCloneAssets,{recursive: true})
+            }catch{
           
-        //     }
-        //   }
-        //   deleteFolder()
+            }
+          }
+          deleteFolder()
 
     async function copyAssets(){
         const folders = await fs.promises.readdir(pathAssets,{withFileTypes: true});
