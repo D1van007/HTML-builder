@@ -1,5 +1,4 @@
-const { mkdir,  readdir, unlink} = require('fs/promises');
-const {createReadStream, createWriteStream} = require('fs');
+const { mkdir,  readdir, unlink, copyFile} = require('fs/promises');
 const path = require('path');
 const pathOriginFolder = path.join(__dirname, 'files')
 const pathCloneFolder = path.join(__dirname, 'files-copy')
@@ -19,8 +18,8 @@ const copyFolders = async () => {
             for ( let i = 0; i < originFiles.length; i += 1) {
                     const pathOriginFile = path.join(pathOriginFolder, originFiles[i]);
                     const pathCloneFile = path.join(pathCloneFolder, originFiles[i]);
-           createReadStream(pathOriginFile).pipe(createWriteStream(pathCloneFile));
-        };
+                    const copyFileToCloneFolder = await copyFile (pathOriginFile, pathCloneFile);
+            };
             
       } catch (err) {
         console.error(err);
