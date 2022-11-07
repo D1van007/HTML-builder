@@ -1,4 +1,4 @@
-const { readdir, unlink} = require('fs/promises');
+const { readdir, unlink, writeFile} = require('fs/promises');
 const { createReadStream, createWriteStream} = require('fs');
 const path = require('path');
 const pathStylesFolder = path.join(__dirname, 'styles');
@@ -6,6 +6,7 @@ const pathBundleFile = path.join(__dirname, 'project-dist/bundle.css');
 
 const bundleStyles = async () => {
     try {
+        const bundleFile = await writeFile(pathBundleFile, '');
         const styleFiles = await readdir(pathStylesFolder);
         unlink(pathBundleFile);
         for ( let i = 0; i < styleFiles.length; i += 1) {
@@ -23,4 +24,4 @@ const bundleStyles = async () => {
         console.error(err);
       }
 }
-bundleStyles();
+bundleStyles()

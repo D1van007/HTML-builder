@@ -19,6 +19,7 @@ const copyFolders = async () => {
                     const pathOriginFile = path.join(pathOriginFolder, originFiles[i]);
                     const pathCloneFile = path.join(pathCloneFolder, originFiles[i]);
                     const copyFileToCloneFolder = await copyFile (pathOriginFile, pathCloneFile);
+
             };
             
       } catch (err) {
