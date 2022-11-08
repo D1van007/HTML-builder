@@ -76,11 +76,13 @@ const copyAssets = async () => {
     // }
     //     deleteFolder(pathCloneAssets);
 
+
         async function deleteFolder(){
             try{
               await fs.promises.access(pathCloneAssets)
               await fs.promises.rm(pathCloneAssets,{recursive: true})
-            }catch{
+            }catch (err) {
+        console.error(err);
           
             }
           }
